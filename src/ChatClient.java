@@ -21,7 +21,7 @@ class MessageSender implements Runnable {
         boolean connected = false;
         do {
             try {
-                sendMessage("GREETINGS");
+                sendMessage("Connecté");
                 connected = true;
             } catch (Exception e) {
 
