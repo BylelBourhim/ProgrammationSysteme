@@ -5,24 +5,24 @@ public class Exercice1 {
     private static final int N = 50000;
 
     public static void main(String[] args) throws InterruptedException {
-        Thread thread1 = new Thread(new IncrementTask());
-        Thread thread2 = new Thread(new IncrementTask());
-
-        thread1.start();
-        thread2.start();
-
-        thread1.join();
-        thread2.join();
-
-        System.out.println("Final value of x: " + x);
-    }
-
-    static class IncrementTask implements Runnable {
-        @Override
-        public void run() {
+        Thread t1 = new Thread(() -> {
             for (int i = 0; i < N; i++) {
                 x++;
             }
-        }
+        });
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < N; i++) {
+                x++;
+            }
+        });
+
+        t1.start();
+        t2.start();
+
+        t1.join();
+        t2.join();
+
+        System.out.println("x = " + x);
     }
 }
